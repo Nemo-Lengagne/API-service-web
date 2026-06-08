@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://www.example.com/product-service"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.example.com/product-service"
+    name="ProductService">
+
+    <!-- 1. Types Definition -->
+    <wsdl:types>
+        <xs:schema 
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/product-service"
+            elementFormDefault="qualified">
+            
+            <!-- Request Type: ProductDetailsRequest -->
+            <xs:element name="ProductDetailsRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ProductId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <!-- Response Type: ProductDetailsResponse -->
+            <xs:element name="ProductDetailsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ProductId" type="xs:int"/>
+                        <xs:element name="ProductName" type="xs:string"/>
+                        <xs:element name="ProductPrice" type="xs:decimal"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- 2. Messages Definition -->
+    <wsdl:message name="ProductDetailsRequestMessage">
+        <wsdl:part name="parameters" element="tns:ProductDetailsRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ProductDetailsResponseMessage">
+        <wsdl:part name="parameters" element="tns:ProductDetailsResponse"/>
+    </wsdl:message>
+
+    <!-- 3. Port Type Definition -->
+    <wsdl:portType name="ProductServicePortType">
+        <wsdl:operation name="getProductDetails">
+            <wsdl:input message="tns:ProductDetailsRequestMessage"/>
+            <wsdl:output message="tns:ProductDetailsResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- 4. Binding Definition -->
+    <wsdl:binding name="ProductServiceBinding" type="tns:ProductServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="getProductDetails">
+            <soap:operation soapAction="http://www.example.com/product-service/getProductDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- 5. Service Definition -->
+    <wsdl:service name="ProductService">
+        <wsdl:port name="ProductServicePort" binding="tns:ProductServiceBinding">
+            <soap:address location="http://www.example.com/product-service"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

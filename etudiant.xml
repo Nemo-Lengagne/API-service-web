@@ -1,0 +1,11 @@
+<etudiant>
+    <nom>Lengagne</nom>
+    <prenom>Nemo</prenom>
+    <numeroEtudiant>12345678910</numeroEtudiant>
+    <email>nemo.lengagne@ecoles-epsi.net</email>
+    <ecole>EPSI</ecole>
+    <matieres>  
+        <matiere>API</matiere>
+        <matiere>JAVA</matiere>
+    </matieres>
+</etudiant>

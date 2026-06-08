@@ -1,0 +1,8 @@
+{
+    "nom": "Lengagne",
+    "prenom": "Nemo",
+    "numeroEtudiant": "12345678910",
+    "email": "nemo.lengagne@ecoles-epsi.net",
+    "ecole": "EPSI",
+    "matieres": ["API", "JAVA"]
+}
